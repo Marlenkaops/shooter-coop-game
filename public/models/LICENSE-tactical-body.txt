@@ -1,0 +1,25 @@
+Human character base: "3D male", by Drummyfish.
+Creator publication: https://opengameart.org/content/3d-male-0
+Original model: https://opengameart.org/sites/default/files/male_3d.blend
+Original texture: https://opengameart.org/sites/default/files/char_texture.png
+Original .blend SHA-256:
+8d0adaf7fe998272dd980697ec450eed1796fe156cdd6dbda55215d9d22ef766
+
+CC0 1.0 Universal (Public Domain Dedication)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+The creator's publication explicitly licenses the model and diffuse texture
+under CC0. It is an original, manually modeled, rigged human, not a MakeHuman
+export. The author describes the public version as safe for work and
+non-identifying.
+
+Deadlight Ops normalizes the body to grounded game units, maps its 39-joint rig,
+uses one creator-authored subdivision level for the near mesh and the base mesh
+for distant detail, retains UVs and normalized skin weights, and converts the
+packed 1024px diffuse texture to JPEG. The winter clothing, goggles, mask,
+helmet, equipment, scoped rifles and runtime poses are Deadlight Ops additions.
+Preparation: scripts/prepare-realistic-body.py, run offline in Blender with
+factory settings and automatic script execution disabled.
+
+Neither the previous Quaternius superhero base nor the former Mixamo/Three.js
+example model or animations are used by these prepared assets.

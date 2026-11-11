@@ -1,0 +1,16 @@
+:root {
+  color-scheme: dark;
+  --dl-bg: #080f18;
+  --dl-panel: #101f2a;
+  --dl-panel-raised: #1b303c;
+  --dl-text: #f1f5f2;
+  --dl-muted: #a9bdc7;
+  --dl-line: #b8d5dc2b;
+  --dl-accent: #eabe79;
+  --dl-blue: #a1dddc;
+  --dl-evergreen: #70bea2;
+  --dl-holly: #df8d89;
+  --dl-danger: #ffa491;
+  --dl-radius: 12px;
+  --dl-font: "Avenir Next", "Segoe UI Variable", "SF Pro Text", system-ui, sans-serif;
+}

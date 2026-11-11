@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="580" viewBox="0 0 900 580" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="700" y2="580" gradientUnits="userSpaceOnUse"><stop stop-color="#204455"/><stop offset="1" stop-color="#0c1a28"/></linearGradient>
+    <linearGradient id="snow" x2="900" y2="580" gradientUnits="userSpaceOnUse"><stop stop-color="#a7c7c9"/><stop offset="1" stop-color="#3e6576"/></linearGradient>
+    <linearGradient id="roof" x2="1" y2="1"><stop stop-color="#a5c7c9"/><stop offset="1" stop-color="#466a79"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#e7f2e7" stop-opacity=".24"/><stop offset="1" stop-color="#c5efdf" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h900v580H0z"/>
+  <ellipse cx="631" cy="127" rx="226" ry="200" fill="url(#moon)"/>
+  <circle cx="631" cy="116" r="37" fill="#d4e5db"/>
+  <path d="m0 279 119-143 69 83L322 58l159 205 68-86 104 104 113-135 134 121v313H0Z" fill="#2a4d5e"/>
+  <path d="m217 186 105-128 100 129-77-35-23-40-29 61-30-10-46 23ZM717 205l49-59 70 63-48-15-22-20-20 32Z" fill="#91b4bd" opacity=".65"/>
+  <path d="m0 352 176-112 142 95 131-61 111 74 164-94 176 73v253H0Z" fill="#173440"/>
+  <path d="m0 459 244-78 167 20 238-52 251 84v147H0Z" fill="url(#snow)"/>
+  <path d="m269 437 194-35 308 85-162 93H351Z" fill="#264856" opacity=".6"/>
+  <g fill="#183c3d" stroke="#719c9c" stroke-width="2">
+    <path d="m750 423 50-91-22 6 22-53-18 7 28-77 30 77-18-7 24 53-22-6 50 91Z"/>
+    <path d="m127 406 42-82-17 8 18-51-14 6 23-68 25 68-15-6 20 51-18-8 43 82Z"/>
+    <path d="m626 388 33-61-14 6 17-44-11 5 18-54 21 54-13-5 18 44-15-6 35 61Z"/>
+  </g>
+  <g fill="#b5cfcb">
+    <path d="m800 292 10-77 17 45-16-9-11 41Zm-21 46 21-53 10 24-19 9-12 20Zm-7 48 28-54 12 26-40 28Z"/>
+    <path d="m169 288 10-69 17 45-17-13-10 37Zm-17 44 18-51 9 23-27 28Zm-10 50 28-58 11 25-39 33Z"/>
+  </g>
+  <g stroke="#71949d" stroke-width="2">
+    <path d="m311 286 202-43 174 95-199 51Z" fill="url(#roof)"/>
+    <path d="m311 286 177 103v128L311 408Z" fill="#24434d"/>
+    <path d="m488 389 199-51v129l-199 50Z" fill="#142e3b"/>
+    <path d="m295 286 209-53 197 102-17 10-176-92-196 49Z" fill="#c0d5cf" stroke="none"/>
+    <path d="m345 349 47 27v63l-47-29Z" fill="#d7a36c"/>
+    <path d="m365 360 1 62m-20-44 46 27" stroke="#5d6962"/>
+    <path d="m530 395 50-13v41l-50 13Z" fill="#e1b178"/>
+    <path d="m598 378 50-13v41l-50 13Z" fill="#d6aa73"/>
+    <path d="m553 389 1 40m68-57 1 40" stroke="#657471"/>
+    <path d="m411 395 47 28v73l-47-29Z" fill="#132f3b"/>
+    <path d="m425 403 22 13v59l-22-13Z" fill="#36525a"/>
+  </g>
+  <path d="M344 305v-91m0 7 42 21m-42-10 36-26m-48 18h25" stroke="#8ba9ae" stroke-width="4"/>
+  <circle cx="344" cy="211" r="4" fill="#e8b47d"/>
+  <path d="M312 309q77 85 176 92 119-8 197-42" stroke="#3e6c63" stroke-width="5"/>
+  <g fill="#f3ce91">
+    <circle cx="330" cy="328" r="4"/><circle cx="358" cy="353" r="4"/><circle cx="389" cy="375" r="4"/>
+    <circle cx="425" cy="391" r="4"/><circle cx="464" cy="400" r="4"/><circle cx="506" cy="401" r="4"/>
+    <circle cx="547" cy="395" r="4"/><circle cx="589" cy="386" r="4"/><circle cx="631" cy="375" r="4"/><circle cx="671" cy="363" r="4"/>
+  </g>
+  <g fill="#c67069" stroke="#e9be80" stroke-width="3">
+    <path d="m716 450 27-9 23 14-27 10Z"/><path d="m716 450 23 15v23l-23-14Z"/><path d="m739 465 27-10v24l-27 9Z"/>
+  </g>
+  <path d="m722 467 24-9m-19-11 23 15v22" stroke="#e9be80" stroke-width="4"/>
+  <g fill="#cee4de" opacity=".65">
+    <circle cx="123" cy="85" r="2"/><circle cx="223" cy="48" r="1.5"/><circle cx="404" cy="101" r="2"/>
+    <circle cx="486" cy="35" r="1.5"/><circle cx="750" cy="70" r="2"/><circle cx="849" cy="155" r="1.5"/>
+    <circle cx="552" cy="204" r="1.5"/><circle cx="229" cy="251" r="2"/><circle cx="83" cy="303" r="1.5"/>
+    <circle cx="731" cy="274" r="2"/><circle cx="452" cy="230" r="1.5"/><circle cx="828" cy="463" r="2"/>
+  </g>
+  <path d="m53 486 82-23m-41 56 70-22m535 27 89-21m-67 43 67-17" stroke="#b1cccc" stroke-width="2" opacity=".45"/>
+</svg>

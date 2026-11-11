@@ -1,0 +1,11 @@
+/data/
+/.local-visual-data/
+/.ll-id.mjs
+/chat
+/node_modules/
+/dist/
+/html-dist/
+.DS_Store
+.env
+.env.*
+!.env.example

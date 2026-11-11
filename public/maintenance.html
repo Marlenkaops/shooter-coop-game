@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex">
+  <title>Deadlight Ops - Winterwatch standby</title>
+  <link rel="stylesheet" href="/ui-theme.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100dvh; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      color: var(--dl-text); background: radial-gradient(ellipse at top, #234a4d, var(--dl-bg) 70%); font: 15px/1.6 var(--dl-font); }
+    main { width: min(100%, 780px); min-width: 0; padding: clamp(18px, 4vw, 36px); border: 1px solid var(--dl-line);
+      border-top: 3px solid var(--dl-evergreen); border-radius: 16px; background: var(--dl-panel); box-shadow: 0 24px 80px #0005; }
+    .label { color: var(--dl-evergreen); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 750; }
+    .standby-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .holiday-mark { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border: 1px solid #eabe7940; border-radius: 12px; color: var(--dl-accent); background: #eabe790c; font-size: 28px; }
+    h1 { margin: 14px 0; font-size: clamp(28px, 6vw, 42px); line-height: 1.1; font-weight: 800; letter-spacing: -.045em; }
+    h1 span { color: var(--dl-blue); }
+    p { color: var(--dl-muted); }
+    button { width: 100%; min-height: 48px; margin-top: 12px; padding: 12px; border: 1px solid var(--dl-accent);
+      border-radius: 7px; background: #eabe7918; color: var(--dl-text); font: inherit; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: wait; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--dl-blue); outline-offset: 3px; }
+    a { display: inline-block; min-height: 44px; align-content: center; color: var(--dl-muted); font-size: 12px; }
+    #status { min-height: 3.2em; font-size: 14px; margin-bottom: 8px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 18px 0 12px; }
+    .stat { border: 1px solid var(--dl-line); border-radius: 7px; padding: 10px 12px; background: var(--dl-bg); min-width: 0; }
+    .stat span { display: block; color: var(--dl-muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+    .stat strong { font-size: 23px; font-variant-numeric: tabular-nums; }
+    #rangeBoard { position: relative; isolation: isolate; height: clamp(240px, 34vh, 320px); overflow: hidden; border: 1px solid #a1dddc50;
+      border-radius: 10px; cursor: crosshair; background: radial-gradient(circle at 75% 16%, #b8d6cf28, transparent 27%), linear-gradient(#152f3e, #0b1c28);
+      touch-action: manipulation; }
+    #rangeBoard::before { content: "WINTERWATCH / STANDBY"; position: absolute; inset: 0; display: grid; place-items: center;
+      color: #beded3; letter-spacing: .15em; font: 10px monospace; pointer-events: none; }
+    #rangeBoard::after { content: ""; z-index: -1; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle, #cbe7df88 1px, transparent 2px) 7px 13px / 53px 61px; }
+    .winter-hills { position: absolute; z-index: -1; left: -10%; right: -10%; bottom: -30px; height: 90px; border-radius: 50%; background: #a8c9ca22; transform: rotate(-5deg); pointer-events: none; }
+    .winter-tree { position: absolute; z-index: -1; bottom: 20px; width: 90px; height: 145px; background: #40796955;
+      clip-path: polygon(50% 0, 70% 30%, 60% 30%, 85% 58%, 72% 58%, 100% 90%, 57% 90%, 57% 100%, 43% 100%, 43% 90%, 0 90%, 28% 58%, 15% 58%, 40% 30%, 30% 30%); pointer-events: none; }
+    .winter-tree.left { left: 3%; }
+    .winter-tree.right { right: 3%; width: 65px; height: 105px; }
+    #rangeBoard.running::before { content: ""; }
+    #rangeTarget { position: absolute; width: 68px; min-height: 68px; height: 68px; margin: 0; padding: 0;
+      border-radius: 50%; border: 3px solid #f1d59c; transform: translate(-50%, -50%); touch-action: manipulation;
+      background: radial-gradient(circle at 32% 24%, #f5b5a2, #c75c5a 34%, #853c4d 76%); box-shadow: 0 4px 14px #0005; cursor: crosshair; }
+    #rangeTarget::before { content: ""; position: absolute; top: -7px; left: 23px; width: 16px; height: 7px; background: #f1d59c; border-radius: 3px 3px 0 0; }
+    #rangeTarget::after { content: "✦"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff1cd; font-size: 38px; line-height: 1; }
+    #rangeTarget[data-kind="gift"] { border-radius: 8px; background: linear-gradient(90deg, transparent 42%, #f1d59c 42% 58%, transparent 58%), linear-gradient(transparent 42%, #f1d59c 42% 58%, transparent 58%), #2f8069; }
+    #rangeTarget[data-kind="gift"]::before { top: -7px; left: 15px; width: 32px; height: 12px; background: transparent; border: 3px solid #f1d59c; border-radius: 50%; }
+    #rangeTarget[data-kind="gift"]::after { content: ""; }
+    #rangeTarget[data-kind="snowflake"] { background: radial-gradient(circle at 30% 25%, #c1e8e4, #478b9c 55%, #234d6a); border-color: #bce7e1; }
+    #rangeTarget[data-kind="snowflake"]::after { content: "❄"; font-size: 44px; color: #f1faf3; }
+    [hidden] { display: none !important; }
+    #rangeMessage { min-height: 3.2em; margin: 10px 0 0; font-size: 13px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .actions button { flex: 1; min-width: 150px; }
+    #retry { border-color: #ffffff30; background: #ffffff08; }
+    #rangeStart { background: var(--dl-accent); color: #131c22; font-weight: 750; }
+    .note { font-size: 12px; color: var(--dl-muted); }
+    #enterGame { background: #255a49; border-color: var(--dl-evergreen); }
+    @media (max-width: 480px) { body { padding: 12px; } .stat { padding: 7px; } .stat strong { font-size: 20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="standby-heading"><div class="label">Deadlight Ops / Update in progress</div><span class="holiday-mark" aria-hidden="true">✦</span></div>
+    <h1>Stay frosty.<br><span>Keep your aim warm.</span></h1>
+    <p>The main game is updating. Welcome to Winterwatch: a Christmas target challenge for the wait.</p>
+    <section id="waitingRange" aria-label="Standby target challenge">
+      <div class="stats">
+        <div class="stat"><span>Score</span><strong id="rangeScore">0</strong></div>
+        <div class="stat"><span>Time</span><strong id="rangeTime">30s</strong></div>
+        <div class="stat"><span>Accuracy</span><strong id="rangeAccuracy">--</strong></div>
+        <div class="stat"><span>Combo</span><strong id="rangeCombo">0x</strong></div>
+      </div>
+      <div id="rangeBoard" aria-label="Christmas target field. Click or tap ornaments, gifts and snowflakes.">
+        <div class="winter-hills" aria-hidden="true"></div><div class="winter-tree left" aria-hidden="true"></div><div class="winter-tree right" aria-hidden="true"></div>
+        <button id="rangeTarget" type="button" aria-label="Shoot target" hidden></button>
+      </div>
+      <p id="rangeMessage" role="status" aria-live="polite">Click or tap targets, or use Tab and Enter. Build a combo without missing.</p>
+      <div class="actions"><button id="rangeStart" type="button">Start 30-second round</button>
+        <button id="retry" type="button">Check update</button></div>
+      <p class="note">Best this visit: <strong id="rangeBest">0</strong> / 30 seconds. Just for fun. No XP, tokens or leaderboard scores.</p>
+    </section>
+    <p id="status" role="status" aria-live="polite">This page checks automatically every 15 seconds.</p>
+    <button id="enterGame" type="button" hidden>Update ready - enter game</button>
+    <p class="note">Keep your browser data to retain your player identity.</p>
+    <a href="/privacy.html" target="_blank" rel="noopener">Privacy policy</a>
+    <noscript><p>Enable JavaScript to play the challenge and check update status.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountMaintenanceRange } from "/maintenance-range.js";
+    mountMaintenanceRange(document.querySelector("#waitingRange"));
+  </script>
+  <script>
+    const button = document.querySelector("#retry"), status = document.querySelector("#status");
+    let checking = false;
+    async function check() {
+      if (checking) return;
+      checking = button.disabled = true;
+      try {
+        const response = await fetch("/api/maintenance", { cache: "no-store", signal: AbortSignal.timeout(6000) });
+        if (!response.ok) throw new Error("Status unavailable");
+        const result = await response.json();
+        if (typeof result.enabled !== "boolean") throw new Error("Invalid status");
+        if (!result.enabled) {
+          status.textContent = "The update is ready! Finish your round or enter the game now.";
+          document.querySelector("#enterGame").hidden = false;
+          clearInterval(poll);
+          return;
+        }
+        status.textContent = "Still updating. We will reopen when the update is ready.";
+      } catch {
+        status.textContent = "Cannot check right now. Please try again shortly.";
+      } finally {
+        checking = button.disabled = false;
+      }
+    }
+    button.addEventListener("click", check);
+    document.querySelector("#enterGame").addEventListener("click", () => { window.top.location.href = "/"; });
+    const poll = setInterval(check, 15000);
+  </script>
+</body>
+</html>
